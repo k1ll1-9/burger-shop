@@ -10,6 +10,7 @@
 @section('content_header')
     @hasSection('content_header_title')
         <h1 class="text-muted">
+
             @yield('content_header_title')
 
             @hasSection('content_header_subtitle')
@@ -18,6 +19,7 @@
                     @yield('content_header_subtitle')
                 </small>
             @endif
+
         </h1>
     @endif
 @stop
@@ -42,3 +44,9 @@
 @section('css')
     @vite(['resources/css/app.scss'])
 @stop
+
+@section('js')
+    @vite(['resources/js/app.js'])
+
+@stop
+
