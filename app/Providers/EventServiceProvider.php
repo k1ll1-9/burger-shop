@@ -25,16 +25,17 @@ class EventServiceProvider extends ServiceProvider
 
             $items = [
                 [
-                    'text' => 'Меню',
-                    'icon' => 'fas fa-fw fa-share',
-                    'submenu' => [
-                        [
-                            'text' => 'Категории',
-                            'url' => route('categories.index'),
-                            'icon' => 'fas fa-fw fa-user',
-                        ],
-                    ],
-                ]
+                    'text' => 'Продукты',
+                    'url' => route('products.index'),
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Категории',
+                    'url' => route('categories.index'),
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+
+
             ];
 
             $event->menu->add(...$items);
