@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Products\StoreRequest;
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -38,9 +38,11 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        $data['image'] = Storage::disk('public')->put('/products/images', $data['image']);
+        if (isset($data['image'])) {
+            $data['image'] = Storage::disk('public')->put('/products/images', $data['image']);
+        }
 
-        $categories = $data['categories'];
+        $categories = $data['categories'] ?? null;
         unset($data['categories']);
 
         $product = Product::firstOrCreate($data);
@@ -60,24 +62,45 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product): View
     {
-        //
+        $categories = Category::all();
+
+        return \view('products.edit', compact('product', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, Product $product): RedirectResponse
     {
-        //
+
+        $data = $request->validated();
+
+        if (isset($data['image'])) {
+            $data['image'] = Storage::disk('public')->put('/products/images', $data['image']);
+        }
+
+        $categories = $data['categories'] ?? null;
+        unset($data['categories']);
+
+        $product->update($data);
+        $product->categories()->sync($categories);
+
+        return redirect()->route('products.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }

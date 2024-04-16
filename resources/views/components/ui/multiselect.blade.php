@@ -1,17 +1,19 @@
 @props([
     'placeholder',
-    'categories',
+    'options',
+    'selected' => [],
     'name'
 ])
-
 <div class="select2-olive">
     <select class="select2"
             name="{{$name}}[]"
             multiple="multiple"
             data-placeholder="{{$placeholder}}"
             data-dropdown-css-class="select2-olive" style="width: 100%;">
-        @foreach($categories as $category)
-            <option value="{{$category->id}}">{{$category->name}}</option>
+        @foreach($options as $category)
+            <option value="{{$category->id}}" {{in_array($category->id,$selected) ? 'selected' : ''}}>
+                {{$category->name}}
+            </option>
         @endforeach
     </select>
 </div>

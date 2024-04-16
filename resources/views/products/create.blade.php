@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <x-ui.multiselect :name="'categories'"
                                           placeholder="Выберите категорию"
-                                          :categories="$categories"/>
+                                          :options="$categories"/>
                     </div>
                     <div class="form-group">
                         <x-ui.checkbox name="special" label="Спецтовар"/>

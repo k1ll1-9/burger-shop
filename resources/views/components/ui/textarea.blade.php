@@ -2,4 +2,4 @@
     'rows' => 3,
     'form-control',
     'is-invalid' => $errors->get('name')
-])}} ></textarea>
+])}} >{{$attributes['value']}}</textarea>

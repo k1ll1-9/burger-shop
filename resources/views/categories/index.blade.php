@@ -35,7 +35,9 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <x-ui.buttons.delete :id="$category->id" :model="'categories'"/>
+                                            <x-ui.buttons.delete :id="$category->id"
+                                                                 model="categories"
+                                                                 message="Категория будет удалена"/>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -15,12 +15,12 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Сортировка</th>
-                                    <th>Название</th>
-                                    <th>Активен</th>
-                                    <th>Цена</th>
-                                    <th>Специальное</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Сортировка</th>
+                                    <th class="text-center">Название</th>
+                                    <th class="text-center">Активен</th>
+                                    <th class="text-center">Цена</th>
+                                    <th class="text-center">Специальное</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -28,23 +28,22 @@
                                 <tbody>
                                 @foreach($products as $id => $product)
                                     <tr>
-                                        <td>{{$product->id}}</td>
-                                        <td>{{$product->sort}}</td>
-                                        <td>{{$product->title}}</td>
-                                        <td>{{$product->active}}</td>
-                                        <td>{{$product->price}}</td>
-                                        <td>{{$product->special}}</td>
+                                        <td class="text-center">{{$product->id}}</td>
+                                        <td class="text-center">{{$product->sort}}</td>
+                                        <td class="text-center">{{$product->title}}</td>
+                                        <td class="text-center">{{$product->active ? "Да" : "Нет"}}</td>
+                                        <td class="text-center">{{$product->price}}</td>
+                                        <td class="text-center">{{$product->special ? "Да" : "Нет"}}</td>
                                         <td>
-                                            <a href="{{ route('categories.show',$product->id) }}">{{$product->name}}</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('categories.edit',$product->id)}}"
+                                            <a href="{{ route('products.edit',$product->id)}}"
                                                class="btn btn-success">
                                                 Редактировать
                                             </a>
                                         </td>
                                         <td>
-                                            <x-ui.buttons.delete :id="$product->id" :model="'categories'"/>
+                                            <x-ui.buttons.delete :id="$product->id"
+                                                                 model="products"
+                                                                 message="Продукт будет удален"/>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -1,4 +1,4 @@
-@props(['id','model'])
+@props(['id','model', 'message'])
 <button class="btn btn-danger js-delete"
         data-toggle="modal"
         data-target="#modal-delete"
@@ -14,7 +14,7 @@
                             class="close text-right" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h3 class="text-center my-2">Категория будет удалена</h3>
+                    <h3 class="text-center my-2">{{$message}}</h3>
                 </div>
                 <div class="d-flex justify-content-center my-3">
                     <form class="js-delete-form" method="post">

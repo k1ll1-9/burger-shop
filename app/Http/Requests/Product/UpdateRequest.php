@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Products;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,6 +17,7 @@ class StoreRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
+
         $this->merge([
             'special' => (bool)$this->input('special'),
             'active' => (bool)$this->input('active'),
